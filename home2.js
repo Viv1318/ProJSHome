@@ -78,3 +78,36 @@ console.log(library1.allBooks); // ['Игра престолов', 'Власте
 // console.log(library1.allBooks); // Ошибка: Книги с таким названием нет в библиотеке
 
 library1.hasBook("Преступление и наказание");
+
+
+// Задание 2
+// Вы разрабатываете систему отзывов для вашего веб-сайта. Пользователи могут оставлять отзывы, но чтобы исключить слишком короткие или слишком длинные сообщения, вы решаете установить некоторые ограничения.
+
+// Создайте HTML-структуру с текстовым полем для ввода отзыва, кнопкой для отправки и контейнером, где будут отображаться отзывы.
+
+// Напишите функцию, которая будет добавлять отзыв в контейнер с отзывами. Однако если длина введенного отзыва менее 50 или более 500 символов, функция должна генерировать исключение.
+
+// При добавлении отзыва, он должен отображаться на странице под предыдущими отзывами, а не заменять их.
+
+    
+    const addButton = document.querySelector('.button');
+    addButton.addEventListener('click', () => {
+        const commentInput = document.getElementById("commentInput");
+      const enteredValue = commentInput.value;
+      try {
+        if (enteredValue.length <= 50 || enteredValue.length >= 500) {
+          throw new Error("Неподходящая длина отзыва.");
+        } 
+        
+        const outputContainer = document.getElementById('output-container');
+        const comment = document.createElement('p'); 
+        comment.classList.add('comment');  
+       
+        comment.textContent = enteredValue; 
+        outputContainer.appendChild(comment); 
+        commentInput.value = ''; 
+  
+      } catch (error) {
+        console.error("Ошибка:", error.message);
+      }
+    });
